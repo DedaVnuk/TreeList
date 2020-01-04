@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="./TreeList.js"></script>
+  <title>TreeList</title>
+</head>
+
+<body>
+
+  <div id="tree-list"></div>
+
+</body>
+
+<script>
+  const log = console.log;
+
+  var folders = [
+    {name: "Home", parent: null},
+    {name: "Documents", parent: "Home"},
+    {name: "Downloads", parent: "Home"},
+    {name: "Music", parent: "Home"},
+    {name: "Пикник", parent: "Music"},
+    {name: "У шамана три руки.mp3", parent: "Пикник"},
+    {name: "Classic", parent: "Music"},
+    {name: "Mozart", parent: "Classic"},
+    {name: "Telegram Downloads", parent: "Downloads"},
+  ]
+
+  var treeList = new TreeList(folders)
+  treeList.draw()
+
+
+</script>
+
+</html>
