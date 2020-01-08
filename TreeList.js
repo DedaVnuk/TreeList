@@ -1,6 +1,9 @@
 class TreeList {
   constructor(list_items = [], root_element_id = "tree-list", params = {}) {
-    this.list_items = list_items;
+    this.list_items = list_items.map(item => {
+      item.name_without_space = item.name.replace(/\s/g, "_");
+      return item;
+    });
 
     this.root_element_id = root_element_id;
 
@@ -16,9 +19,8 @@ class TreeList {
       .style("list-style-type", "none")
 
 
-    this.show_icon = ">";
-    this.hide_icon = "<";
-    this.add_item_icon = "+";
+    this.show_icon = "+";
+    this.hide_icon = "-";
   }
 
   draw() {
@@ -35,13 +37,13 @@ class TreeList {
         return li
       } else {
         var ul = li.append("ul")
-          .attr("id", `${struct.data.name}-child`)
+          .attr("id", `${struct.data.name_without_space}-child`)
           .style("padding-inline-start", "25px")
           .style("list-style-type", "none")
 
         // добавляем иконку открытия/закрытия папки
         li.append("span").lower()
-          .attr("list-item-name", struct.data.name)
+          .attr("list-item-name", struct.data.name_without_space)
           .style("padding-right", "8px")
           .style("cursor", "pointer")
           .text(self.hide_icon)
